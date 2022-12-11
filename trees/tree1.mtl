@@ -1,0 +1,12 @@
+newmtl bark06
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+map_Kd bark06.png
+
+newmtl juniper leaf
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+map_Kd juniper leaf.png
+

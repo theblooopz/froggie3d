@@ -1,0 +1,258 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://froggie_diffuse.png" type="Texture" id=1]
+[ext_resource path="res://move.gd" type="Script" id=2]
+[ext_resource path="res://froggie3d.gltf" type="PackedScene" id=3]
+[ext_resource path="res://froggie_fur_pattern.png" type="Texture" id=4]
+[ext_resource path="res://addons/shell_fur/shell_fur_manager.gd" type="Script" id=5]
+
+[sub_resource type="SpatialMaterial" id=121]
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0
+
+[sub_resource type="CapsuleShape" id=123]
+radius = 0.4493
+height = 0.553618
+
+[sub_resource type="SphereShape" id=40]
+radius = 0.75
+
+[sub_resource type="AnimationNodeAnimation" id=113]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=74]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=114]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=115]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
+states/Idle/node = SubResource( 74 )
+states/Idle/position = Vector2( 360, 142 )
+"states/Idle 2/node" = SubResource( 113 )
+"states/Idle 2/position" = Vector2( 548, 142 )
+transitions = [ "Idle", "Idle 2", SubResource( 114 ), "Idle 2", "Idle", SubResource( 115 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -19, 33 )
+
+[sub_resource type="AnimationNodeAnimation" id=116]
+animation = "Run"
+
+[sub_resource type="AnimationNodeTimeScale" id=117]
+
+[sub_resource type="AnimationNodeBlendTree" id=118]
+graph_offset = Vector2( -288, 73 )
+nodes/Animation/node = SubResource( 116 )
+nodes/Animation/position = Vector2( -40, 140 )
+nodes/TimeScale/node = SubResource( 117 )
+nodes/TimeScale/position = Vector2( 140, 140 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeAnimation" id=109]
+animation = "Run"
+
+[sub_resource type="AnimationNodeTimeScale" id=110]
+
+[sub_resource type="AnimationNodeBlendTree" id=111]
+graph_offset = Vector2( -241, 53 )
+nodes/Animation/node = SubResource( 109 )
+nodes/Animation/position = Vector2( -80, 120 )
+nodes/TimeScale/node = SubResource( 110 )
+nodes/TimeScale/position = Vector2( 120, 120 )
+nodes/output/position = Vector2( 300, 160 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=119]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=120]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=83]
+states/BlendTree/node = SubResource( 111 )
+states/BlendTree/position = Vector2( 449, 70 )
+"states/BlendTree 2/node" = SubResource( 118 )
+"states/BlendTree 2/position" = Vector2( 709, 70 )
+transitions = [ "BlendTree", "BlendTree 2", SubResource( 119 ), "BlendTree 2", "BlendTree", SubResource( 120 ) ]
+start_node = "BlendTree"
+graph_offset = Vector2( 58, -43 )
+
+[sub_resource type="AnimationNodeAnimation" id=94]
+animation = "Wave"
+
+[sub_resource type="AnimationNodeAnimation" id=51]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeBlendTree" id=53]
+graph_offset = Vector2( 20, -80 )
+nodes/Animation/node = SubResource( 51 )
+nodes/Animation/position = Vector2( 320, -20 )
+nodes/output/position = Vector2( 600, 0 )
+node_connections = [ "output", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+advance_condition = "idle"
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+advance_condition = "jump"
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=84]
+advance_condition = "move"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=85]
+advance_condition = "idle"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=88]
+advance_condition = "jump"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=89]
+advance_condition = "move"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=95]
+advance_condition = "wave"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+switch_mode = 2
+advance_condition = "idle"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=122]
+advance_condition = "move"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Idle/node = SubResource( 18 )
+states/Idle/position = Vector2( 132, 126 )
+states/Move/node = SubResource( 83 )
+states/Move/position = Vector2( 379, 79 )
+states/Wave/node = SubResource( 94 )
+states/Wave/position = Vector2( -43.542, 5 )
+states/jump/node = SubResource( 53 )
+states/jump/position = Vector2( 361, 239 )
+transitions = [ "jump", "Idle", SubResource( 54 ), "Idle", "jump", SubResource( 55 ), "Idle", "Move", SubResource( 84 ), "Move", "Idle", SubResource( 85 ), "Move", "jump", SubResource( 88 ), "jump", "Move", SubResource( 89 ), "Idle", "Wave", SubResource( 95 ), "Wave", "Idle", SubResource( 96 ), "Wave", "Move", SubResource( 122 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -309.542, -1.0105 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=112]
+
+[node name="player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185809, 0 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 2 )
+
+[node name="mesh" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
+
+[node name="Froggie" parent="mesh" index="0"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="Froggie_mesh" parent="mesh/Froggie/Skeleton" index="0"]
+material/0 = SubResource( 121 )
+
+[node name="ShellFur" type="Spatial" parent="mesh/Froggie/Skeleton/Froggie_mesh" index="0"]
+script = ExtResource( 5 )
+shader_type = 0
+custom_shader = null
+layers = 40
+pattern_selector = 5
+pattern_texture = ExtResource( 4 )
+pattern_uv_scale = 1.0
+cast_shadow = false
+mat_transmission = Color( 0.670588, 0.807843, 0.431373, 1 )
+mat_ao = 0.454
+mat_ao_light_affect = 0.665
+mat_roughness = 0.782
+mat_albedo_color = Transform( 1, 1, 0, 1, 0.898039, 0, 1, 0.898039, 1, 0, 0, 0 )
+mat_albedo_uv_scale = Vector3( 1, 1, 1 )
+mat_albedo_texture = ExtResource( 1 )
+mat_shape_length = 0.321
+mat_shape_length_rand = 0.153
+mat_shape_density = 1.0
+mat_shape_thickness_base = 0.608
+mat_shape_thickness_tip = 0.202
+mat_shape_thickness_rand = 0.043
+mat_shape_growth = 1.0
+mat_shape_growth_rand = 0.0
+mat_shape_ldtg_uv_scale = Vector3( 1, 1, 0 )
+mat_shape_ldtg_texture = null
+physics_custom_physics_pivot = NodePath("")
+physics_gravity = 0.153
+physics_spring = 9.338
+physics_damping = 0.1
+physics_wind_strength = 0.0
+physics_wind_speed = 1.0
+physics_wind_scale = 1.0
+physics_wind_angle = 0.0
+styling_blendshape = 0
+lod_LOD0_distance = 10.0
+lod_LOD1_distance = 100.0
+
+[node name="bone_mount" type="BoneAttachment" parent="mesh/Froggie/Skeleton" index="1"]
+transform = Transform( -1.80364e-07, 0.39194, 0.919991, -3.02728e-08, 0.919991, -0.39194, -1, -9.85426e-08, -1.54068e-07, -0.74006, 2.33865, 0.0193155 )
+bone_name = "Trunk"
+
+[node name="mount" type="RemoteTransform" parent="mesh/Froggie/Skeleton/bone_mount"]
+transform = Transform( 1, 0, 0, 0, 0.905131, 0.425132, 0, -0.425132, 0.905131, -7.93487e-07, 1.38868, 3.25961 )
+update_scale = false
+
+[node name="CSGBox" type="CSGBox" parent="mesh/Froggie/Skeleton/bone_mount/mount"]
+visible = false
+
+[node name="pickup_ray" type="RayCast" parent="mesh"]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.52917, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -1.25 )
+collision_mask = 2
+debug_shape_custom_color = Color( 1, 0, 0, 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.7, 0.11947 )
+shape = SubResource( 123 )
+
+[node name="mouse_control_stay_delay" type="Timer" parent="."]
+
+[node name="arm" type="SpringArm" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.121, 0 )
+shape = SubResource( 40 )
+spring_length = 3.0
+margin = 0.5
+
+[node name="Camera" type="Camera" parent="arm"]
+current = true
+far = 10000.0
+
+[node name="state" type="AnimationTree" parent="."]
+tree_root = SubResource( 11 )
+anim_player = NodePath("../mesh/AnimationPlayer")
+active = true
+root_motion_track = NodePath("Froggie/Skeleton:Root")
+parameters/playback = SubResource( 12 )
+parameters/conditions/idle = true
+parameters/conditions/jump = false
+parameters/conditions/move = false
+parameters/conditions/wave = false
+parameters/Idle/playback = SubResource( 13 )
+parameters/Move/playback = SubResource( 112 )
+parameters/Move/BlendTree/TimeScale/scale = 1.0
+"parameters/Move/BlendTree 2/TimeScale/scale" = 1.0
+
+[editable path="mesh"]

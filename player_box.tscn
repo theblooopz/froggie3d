@@ -1,0 +1,219 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://move.gd" type="Script" id=1]
+[ext_resource path="res://CharacterController_ThirdPerson.glb" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=3]
+resource_name = "PaperboxGuy_Idle"
+length = 8.33333
+loop = true
+
+[sub_resource type="Animation" id=4]
+resource_name = "PaperboxGuy_JumpDown"
+length = 1.66667
+
+[sub_resource type="Animation" id=72]
+resource_name = "PaperboxGuy_JumpDown (copy)"
+length = 1.66667
+
+[sub_resource type="Animation" id=5]
+resource_name = "PaperboxGuy_Run"
+length = 0.75
+loop = true
+
+[sub_resource type="Animation" id=6]
+resource_name = "PaperboxGuy_Walk"
+length = 1.08333
+loop = true
+
+[sub_resource type="CapsuleShape" id=25]
+radius = 0.462182
+height = 0.486
+
+[sub_resource type="SphereShape" id=40]
+radius = 0.75
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "PaperboxGuy_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "PaperboxGuy_Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
+states/PaperboxGuy_Idle/node = SubResource( 15 )
+states/PaperboxGuy_Idle/position = Vector2( 302, 133 )
+"states/PaperboxGuy_Idle 2/node" = SubResource( 14 )
+"states/PaperboxGuy_Idle 2/position" = Vector2( 630, 133 )
+transitions = [ "PaperboxGuy_Idle", "PaperboxGuy_Idle 2", SubResource( 16 ), "PaperboxGuy_Idle 2", "PaperboxGuy_Idle", SubResource( 17 ) ]
+start_node = "PaperboxGuy_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=63]
+animation = "PaperboxGuy_JumpDown"
+
+[sub_resource type="AnimationNodeTimeScale" id=64]
+
+[sub_resource type="AnimationNodeBlendTree" id=65]
+graph_offset = Vector2( -299, 51 )
+nodes/Animation/node = SubResource( 63 )
+nodes/Animation/position = Vector2( -220, 140 )
+nodes/TimeScale/node = SubResource( 64 )
+nodes/TimeScale/position = Vector2( 60, 140 )
+nodes/output/position = Vector2( 240, 140 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeAnimation" id=51]
+animation = "PaperboxGuy_JumpDown"
+
+[sub_resource type="AnimationNodeTimeScale" id=61]
+
+[sub_resource type="AnimationNodeTimeSeek" id=73]
+
+[sub_resource type="AnimationNodeBlendTree" id=53]
+graph_offset = Vector2( -168, -68 )
+nodes/Animation/node = SubResource( 51 )
+nodes/Animation/position = Vector2( -40, 0 )
+nodes/TimeScale/node = SubResource( 61 )
+nodes/TimeScale/position = Vector2( 260, -60 )
+nodes/output/position = Vector2( 600, 0 )
+nodes/seek/node = SubResource( 73 )
+nodes/seek/position = Vector2( 440, 20 )
+node_connections = [ "seek", 0, "TimeScale", "output", 0, "seek", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "PaperboxGuy_Walk"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "PaperboxGuy_Run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=21]
+blend_point_0/node = SubResource( 19 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 20 )
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+advance_condition = "move"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+advance_condition = "idle"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+advance_condition = "idle"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+advance_condition = "jump"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+advance_condition = "jump"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+advance_condition = "move"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+advance_condition = "float"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+advance_condition = "move"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+advance_condition = "jump"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+advance_condition = "float"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=70]
+advance_condition = "idle"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=71]
+advance_condition = "float"
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Idle/node = SubResource( 18 )
+states/Idle/position = Vector2( 120, 124 )
+states/float/node = SubResource( 65 )
+states/float/position = Vector2( 601, 114 )
+states/jump/node = SubResource( 53 )
+states/jump/position = Vector2( 361, 239 )
+states/move/node = SubResource( 21 )
+states/move/position = Vector2( 361, 35 )
+transitions = [ "Idle", "move", SubResource( 22 ), "move", "Idle", SubResource( 23 ), "jump", "Idle", SubResource( 54 ), "Idle", "jump", SubResource( 55 ), "move", "jump", SubResource( 56 ), "jump", "move", SubResource( 57 ), "move", "float", SubResource( 66 ), "float", "move", SubResource( 67 ), "float", "jump", SubResource( 68 ), "jump", "float", SubResource( 69 ), "float", "Idle", SubResource( 70 ), "Idle", "float", SubResource( 71 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -138, -62 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+
+[node name="player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185809, 0 )
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="mesh" type="Spatial" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="mesh"]
+anims/PaperboxGuy_Idle = SubResource( 3 )
+anims/PaperboxGuy_JumpDown = SubResource( 4 )
+"anims/PaperboxGuy_JumpDown (copy)" = SubResource( 72 )
+anims/PaperboxGuy_Run = SubResource( 5 )
+anims/PaperboxGuy_Walk = SubResource( 6 )
+
+[node name="CharacterController_ThirdPerson" parent="mesh" instance=ExtResource( 2 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.688967, 0 )
+shape = SubResource( 25 )
+
+[node name="mouse_control_stay_delay" type="Timer" parent="."]
+
+[node name="arm" type="SpringArm" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12129, 0 )
+shape = SubResource( 40 )
+spring_length = 6.0
+margin = 2.0
+
+[node name="Camera" type="Camera" parent="arm"]
+current = true
+
+[node name="state" type="AnimationTree" parent="."]
+tree_root = SubResource( 11 )
+anim_player = NodePath("../mesh/AnimationPlayer")
+active = true
+root_motion_track = NodePath("PaperboxGuy_Armature/Skeleton:Bone.012")
+parameters/playback = SubResource( 12 )
+parameters/conditions/float = false
+parameters/conditions/idle = false
+parameters/conditions/jump = false
+parameters/conditions/move = false
+parameters/Idle/playback = SubResource( 13 )
+parameters/float/TimeScale/scale = 0.5
+parameters/jump/TimeScale/scale = 0.0
+parameters/jump/seek/seek_position = -1.0
+parameters/move/blend_position = 0.99794
+
+[node name="ray" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.339121, 0 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+debug_shape_custom_color = Color( 1, 0, 0, 1 )
+debug_shape_thickness = 3

@@ -1,0 +1,212 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://player_froggie.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TestGround1.material" type="Material" id=2]
+[ext_resource path="res://default_env.tres" type="Environment" id=5]
+[ext_resource path="res://addons/SIsilicon.vfx.godrays/GodRays.gd" type="Script" id=6]
+[ext_resource path="res://addons/cloud/Cloud.gd" type="Script" id=7]
+[ext_resource path="res://addons/cloud/CageMesh.tres" type="ArrayMesh" id=8]
+[ext_resource path="res://addons/cloud/Cloud.shader" type="Shader" id=9]
+
+[sub_resource type="GDScript" id=74]
+script/source = "extends Spatial
+
+
+func _ready():
+	set_process_input(true)
+
+func _input(event):
+	
+	if event.is_action_pressed(\"exit\"):
+		get_tree().quit()
+	
+	if event.is_action_pressed(\"fullscreen\"):
+		OS.set_window_fullscreen(not OS.is_window_fullscreen())
+"
+
+[sub_resource type="ArrayMesh" id=26]
+resource_name = "ground_Plane"
+surfaces/0 = {
+"aabb": AABB( -8, 0, -17.1252, 16, 4.34977, 31.4894 ),
+"array_data": PoolByteArray( 0, 0, 0, 65, 0, 0, 0, 0, 0, 0, 128, 192, 0, 86, 127, 63, 64, 72, 0, 56, 0, 0, 0, 65, 0, 0, 0, 0, 0, 0, 128, 192, 0, 127, 127, 63, 64, 72, 128, 197, 0, 0, 0, 193, 0, 0, 0, 0, 0, 0, 128, 192, 0, 86, 127, 63, 0, 56, 0, 56, 0, 0, 0, 193, 0, 0, 0, 0, 0, 0, 128, 192, 0, 127, 127, 63, 0, 56, 128, 197, 0, 0, 0, 65, 0, 0, 0, 0, 0, 0, 0, 65, 115, 127, 127, 193, 0, 56, 0, 56, 0, 0, 0, 65, 0, 0, 0, 0, 0, 0, 0, 65, 0, 127, 127, 63, 64, 72, 0, 56, 0, 0, 0, 193, 0, 0, 0, 0, 0, 0, 0, 65, 115, 127, 127, 193, 128, 199, 0, 56, 0, 0, 0, 193, 0, 0, 0, 0, 0, 0, 0, 65, 0, 127, 127, 63, 0, 56, 0, 56, 0, 0, 0, 65, 233, 215, 87, 64, 177, 0, 50, 193, 0, 86, 127, 63, 64, 72, 32, 194, 0, 0, 0, 65, 233, 215, 87, 64, 177, 0, 50, 193, 0, 127, 127, 63, 64, 72, 127, 59, 0, 0, 0, 193, 233, 215, 87, 64, 177, 0, 50, 193, 0, 86, 127, 63, 0, 56, 32, 194, 0, 0, 0, 193, 233, 215, 87, 64, 177, 0, 50, 193, 0, 127, 127, 63, 0, 56, 127, 59, 0, 0, 0, 65, 233, 215, 87, 64, 88, 0, 137, 193, 0, 127, 127, 63, 64, 72, 32, 192, 0, 0, 0, 193, 233, 215, 87, 64, 88, 0, 137, 193, 0, 127, 127, 63, 0, 56, 32, 192, 0, 0, 0, 65, 87, 49, 139, 64, 73, 165, 6, 65, 115, 127, 127, 193, 0, 56, 179, 190, 0, 0, 0, 65, 87, 49, 139, 64, 73, 165, 6, 65, 0, 127, 127, 63, 0, 56, 169, 57, 0, 0, 0, 193, 87, 49, 139, 64, 73, 165, 6, 65, 115, 127, 127, 193, 128, 199, 179, 190, 0, 0, 0, 193, 87, 49, 139, 64, 73, 165, 6, 65, 0, 127, 127, 63, 128, 199, 169, 57, 0, 0, 0, 65, 87, 49, 139, 64, 218, 211, 101, 65, 0, 127, 127, 63, 0, 56, 93, 67, 0, 0, 0, 193, 87, 49, 139, 64, 218, 211, 101, 65, 0, 127, 127, 63, 128, 199, 93, 67 ),
+"array_index_data": PoolByteArray( 7, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 2, 0, 8, 0, 0, 0, 2, 0, 10, 0, 8, 0, 11, 0, 12, 0, 9, 0, 11, 0, 13, 0, 12, 0, 4, 0, 16, 0, 6, 0, 4, 0, 14, 0, 16, 0, 15, 0, 19, 0, 17, 0, 15, 0, 18, 0, 19, 0 ),
+"blend_shape_data": [  ],
+"format": 2194711,
+"index_count": 30,
+"material": ExtResource( 2 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 20
+}
+
+[sub_resource type="ConcavePolygonShape" id=24]
+data = PoolVector3Array( -8, 0, 8, 8, 0, -4, 8, 0, 8, -8, 0, 8, -8, 0, -4, 8, 0, -4, -8, 0, -4, 8, 3.3726, -11.1252, 8, 0, -4, -8, 0, -4, -8, 3.3726, -11.1252, 8, 3.3726, -11.1252, -8, 3.3726, -11.1252, 8, 3.3726, -17.1252, 8, 3.3726, -11.1252, -8, 3.3726, -11.1252, -8, 3.3726, -17.1252, 8, 3.3726, -17.1252, 8, 0, 8, -8, 4.3498, 8.4154, -8, 0, 8, 8, 0, 8, 8, 4.3498, 8.4154, -8, 4.3498, 8.4154, 8, 4.3498, 8.4154, -8, 4.3498, 14.3642, -8, 4.3498, 8.4154, 8, 4.3498, 8.4154, 8, 4.3498, 14.3642, -8, 4.3498, 14.3642 )
+
+[sub_resource type="Animation" id=27]
+resource_name = "PaperboxGuy_Idle"
+length = 8.33333
+
+[sub_resource type="Animation" id=28]
+resource_name = "PaperboxGuy_JumpDown"
+length = 1.66667
+
+[sub_resource type="Animation" id=29]
+resource_name = "PaperboxGuy_Run"
+length = 0.75
+
+[sub_resource type="Animation" id=30]
+resource_name = "PaperboxGuy_Walk"
+length = 1.08333
+
+[sub_resource type="GIProbeData" id=62]
+bounds = AABB( -19.6309, -10.8751, -24.637, 39.2618, 21.7502, 49.274 )
+cell_size = 0.384953
+to_cell_xform = Transform( 2.59772, 0, 0, 0, 2.59772, 0, 0, 0, 2.59772, 50.9956, 28.2505, 64 )
+dynamic_data = PoolIntArray( 0, 8, 128, 64, 128, 1, 0, 0, 0, 547, 0, 0, 7, 0, 1, 3800, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+energy = 0.8
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
+
+[sub_resource type="ShaderMaterial" id=75]
+render_priority = -123
+shader = ExtResource( 9 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.6
+shader_param/max_density = 6.0
+shader_param/altitude = 2000.0
+shader_param/color = Color( 0.568627, 0.698039, 0.878431, 1 )
+shader_param/detail_noise = true
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=76]
+render_priority = -124
+next_pass = SubResource( 75 )
+shader = ExtResource( 9 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.54219
+shader_param/max_density = 8.89052
+shader_param/altitude = 2031.2
+shader_param/color = Color( 0.723921, 0.806745, 0.922196, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=77]
+render_priority = -125
+next_pass = SubResource( 76 )
+shader = ExtResource( 9 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.498681
+shader_param/max_density = 11.066
+shader_param/altitude = 2062.4
+shader_param/color = Color( 0.844706, 0.891294, 0.956235, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=78]
+render_priority = -126
+next_pass = SubResource( 77 )
+shader = ExtResource( 9 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.480237
+shader_param/max_density = 11.9882
+shader_param/altitude = 2093.6
+shader_param/color = Color( 0.93098, 0.951686, 0.980549, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=79]
+render_priority = -127
+next_pass = SubResource( 78 )
+shader = ExtResource( 9 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.491421
+shader_param/max_density = 11.429
+shader_param/altitude = 2124.8
+shader_param/color = Color( 0.982745, 0.987922, 0.995137, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=80]
+render_priority = -128
+next_pass = SubResource( 79 )
+shader = ExtResource( 9 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.529466
+shader_param/max_density = 9.52671
+shader_param/altitude = 2156.0
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[node name="Spatial" type="Spatial"]
+script = SubResource( 74 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.956172, -0.292484, -0.0137406, 0.216626, -0.738194, 0.638861, -0.197, 0.607884, 0.7692, 6.56411, 3.1097, 3.98663 )
+light_energy = 3.0
+shadow_enabled = true
+directional_shadow_blend_splits = true
+directional_shadow_normal_bias = 0.1
+
+[node name="GodRays" type="Spatial" parent="DirectionalLight"]
+visible = false
+script = ExtResource( 6 )
+exposure = 0.515
+attenuation = 1.8025
+light_size = 0.076
+
+[node name="ground" type="Spatial" parent="."]
+
+[node name="TestGround" type="MeshInstance" parent="ground"]
+mesh = SubResource( 26 )
+
+[node name="StaticBody" type="StaticBody" parent="ground/TestGround"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ground/TestGround/StaticBody"]
+shape = SubResource( 24 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ground"]
+anims/PaperboxGuy_Idle = SubResource( 27 )
+anims/PaperboxGuy_JumpDown = SubResource( 28 )
+anims/PaperboxGuy_Run = SubResource( 29 )
+anims/PaperboxGuy_Walk = SubResource( 30 )
+
+[node name="GIProbe" type="GIProbe" parent="."]
+extents = Vector3( 19.6309, 10.8751, 24.637 )
+energy = 0.8
+data = SubResource( 62 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
+
+[node name="CloudDome2" type="MeshInstance" parent="."]
+transform = Transform( 50.025, 0, 0, 0, 50.025, 0, 0, 0, 50.025, 1.16673, 1.15568, -0.279169 )
+material_override = SubResource( 80 )
+mesh = ExtResource( 8 )
+skeleton = NodePath("")
+script = ExtResource( 7 )
+cloud_speed = Vector2( 10, 0 )
+cloud_shadow_enabled = false
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16673, 0.0346773, -0.279169 )

@@ -1,0 +1,374 @@
+[gd_scene load_steps=52 format=2]
+
+[ext_resource path="res://flower/model.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://WindGrass/grass_triangle.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://flower/texture.png" type="Texture" id=3]
+[ext_resource path="res://player_froggie.tscn" type="PackedScene" id=4]
+[ext_resource path="res://default_env.tres" type="Environment" id=5]
+[ext_resource path="res://addons/cloud/Cloud.gd" type="Script" id=6]
+[ext_resource path="res://addons/cloud/CageMesh.tres" type="ArrayMesh" id=7]
+[ext_resource path="res://addons/cloud/Cloud.shader" type="Shader" id=8]
+[ext_resource path="res://addons/cloud/CloudShadow.shader" type="Shader" id=9]
+[ext_resource path="res://addons/zylann.hterrain/data.hterrain" type="Resource" id=10]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=11]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=12]
+[ext_resource path="res://ground/Ground037_2K_Color.jpg" type="Texture" id=13]
+[ext_resource path="res://ground/Ground037_2K_NormalGL.jpg" type="Texture" id=14]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" type="Script" id=15]
+[ext_resource path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" type="Texture" id=16]
+[ext_resource path="res://trees/tree1.obj" type="ArrayMesh" id=17]
+[ext_resource path="res://trees/bark06_n.png" type="Texture" id=18]
+[ext_resource path="res://trees/juniper leaf_n.png" type="Texture" id=19]
+[ext_resource path="res://trees/juniper leaf.png" type="Texture" id=20]
+[ext_resource path="res://trees/bark06.png" type="Texture" id=21]
+[ext_resource path="res://particles/seed.png" type="Texture" id=22]
+[ext_resource path="res://objects/crate1_diffuse.png" type="Texture" id=23]
+
+[sub_resource type="GDScript" id=10]
+script/source = "extends Spatial
+
+
+func _ready():
+	set_process_input(true)
+
+func _input(event):
+	
+	if event.is_action_pressed(\"exit\"):
+		get_tree().quit()
+	
+	if event.is_action_pressed(\"restart\"):
+		get_tree().reload_current_scene()
+	
+	if event.is_action_pressed(\"fullscreen\"):
+		OS.set_window_fullscreen(not OS.is_window_fullscreen())
+"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=32]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=104]
+
+[sub_resource type="ShaderMaterial" id=105]
+render_priority = -123
+shader = ExtResource( 8 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.6
+shader_param/max_density = 6.0
+shader_param/altitude = 2000.0
+shader_param/color = Color( 0.568627, 0.698039, 0.878431, 1 )
+shader_param/detail_noise = true
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=106]
+render_priority = -124
+next_pass = SubResource( 105 )
+shader = ExtResource( 8 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.54219
+shader_param/max_density = 8.89052
+shader_param/altitude = 2031.2
+shader_param/color = Color( 0.723921, 0.806745, 0.922196, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=107]
+render_priority = -125
+next_pass = SubResource( 106 )
+shader = ExtResource( 8 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.498681
+shader_param/max_density = 11.066
+shader_param/altitude = 2062.4
+shader_param/color = Color( 0.844706, 0.891294, 0.956235, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=108]
+render_priority = -126
+next_pass = SubResource( 107 )
+shader = ExtResource( 8 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.480237
+shader_param/max_density = 11.9882
+shader_param/altitude = 2093.6
+shader_param/color = Color( 0.93098, 0.951686, 0.980549, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=109]
+render_priority = -127
+next_pass = SubResource( 108 )
+shader = ExtResource( 8 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.491421
+shader_param/max_density = 11.429
+shader_param/altitude = 2124.8
+shader_param/color = Color( 0.982745, 0.987922, 0.995137, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=110]
+render_priority = -128
+next_pass = SubResource( 109 )
+shader = ExtResource( 8 )
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+shader_param/min_density = 0.529466
+shader_param/max_density = 9.52671
+shader_param/altitude = 2156.0
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = ExtResource( 9 )
+shader_param/bias = 0.4
+shader_param/scale = 100.0
+shader_param/seed = -10000.0
+shader_param/speed = Vector2( 10, 0 )
+shader_param/transform_speed = Vector2( 0, 1e-05 )
+
+[sub_resource type="PlaneMesh" id=18]
+size = Vector2( 300, 300 )
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 12 )
+mode = 0
+textures = [ [ ExtResource( 13 ) ], [ ExtResource( 14 ) ] ]
+
+[sub_resource type="Gradient" id=41]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 0.382239, 0.507813, 0.0733948, 1 )
+
+[sub_resource type="GradientTexture" id=42]
+gradient = SubResource( 41 )
+width = 64
+
+[sub_resource type="Curve" id=57]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=58]
+curve = SubResource( 57 )
+
+[sub_resource type="CurveTexture" id=60]
+curve = SubResource( 57 )
+
+[sub_resource type="SpatialMaterial" id=63]
+albedo_texture = ExtResource( 21 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 18 )
+
+[sub_resource type="SpatialMaterial" id=64]
+params_cull_mode = 2
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.2
+albedo_color = Color( 0.721569, 0.847059, 0.247059, 1 )
+albedo_texture = ExtResource( 20 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 19 )
+transmission_enabled = true
+transmission = Color( 0.74902, 0.819608, 0.572549, 1 )
+
+[sub_resource type="CapsuleShape" id=62]
+radius = 0.992158
+height = 18.0148
+
+[sub_resource type="Curve" id=73]
+_data = [ Vector2( 0, 0.993182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=74]
+curve = SubResource( 73 )
+
+[sub_resource type="ParticlesMaterial" id=75]
+emission_shape = 2
+emission_box_extents = Vector3( 15, 15, 15 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 15.0
+initial_velocity_random = 0.07
+angular_velocity = 411.55
+angular_velocity_random = 0.41
+scale_random = 0.08
+scale_curve = SubResource( 74 )
+
+[sub_resource type="SpatialMaterial" id=71]
+flags_transparent = true
+params_billboard_mode = 1
+albedo_color = Color( 1, 1, 1, 0.192157 )
+albedo_texture = ExtResource( 22 )
+transmission_enabled = true
+transmission = Color( 0.713726, 0.713726, 0.713726, 1 )
+uv1_scale = Vector3( 0.5, 0.5, 1 )
+
+[sub_resource type="QuadMesh" id=72]
+material = SubResource( 71 )
+size = Vector2( 0.25, 0.25 )
+
+[sub_resource type="SpatialMaterial" id=82]
+albedo_texture = ExtResource( 23 )
+
+[sub_resource type="BoxShape" id=83]
+
+[node name="WindGrass" type="Spatial"]
+script = SubResource( 10 )
+
+[node name="player" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 1.20251, 9.88832, -3.67169 )
+
+[node name="Skeleton" parent="player/mesh/Froggie" index="0"]
+bones/1/bound_children = [ NodePath("bone_mount") ]
+
+[node name="bone_mount" parent="player/mesh/Froggie/Skeleton" index="1"]
+transform = Transform( -1.80364e-07, 0.39194, 0.919991, -3.02728e-08, 0.919991, -0.39194, -1, -9.85426e-08, -1.54068e-07, -0.74006, 2.33865, 0.0193155 )
+
+[node name="state" parent="player" index="4"]
+parameters/playback = SubResource( 32 )
+parameters/Idle/playback = SubResource( 33 )
+parameters/Move/playback = SubResource( 104 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.234243, -0.861674, -0.450164, -0.648519, -0.206467, 0.732662, -0.72426, 0.463561, -0.510449, 279.253, 17.6482, 255.496 )
+layers = 0
+light_energy = 2.277
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
+
+[node name="CloudDome2" type="MeshInstance" parent="."]
+transform = Transform( 5000.02, 0, 0, 0, 5000.02, 0, 0, 0, 5000.02, 1.20251, 12.6908, -3.67169 )
+material_override = SubResource( 110 )
+mesh = ExtResource( 7 )
+skeleton = NodePath("")
+script = ExtResource( 6 )
+cloud_speed = Vector2( 10, 0 )
+cloud_shadow_enabled = false
+
+[node name="MeshInstance" type="MeshInstance" parent="CloudDome2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
+visible = false
+material_override = SubResource( 17 )
+mesh = SubResource( 18 )
+
+[node name="HTerrain" type="Spatial" parent="."]
+script = ExtResource( 11 )
+ambient_wind = 0.231
+lod_scale = 2.0
+centered = true
+_terrain_data = ExtResource( 10 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 25 )
+render_layers = 1
+shader_params/u_ground_uv_scale_per_texture = Plane( 20, 20, 20, 20 )
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0.1, 0, 0, 0 )
+shader_params/u_globalmap_blend_start = null
+shader_params/u_globalmap_blend_distance = null
+shader_params/u_colormap_opacity_per_texture = Plane( 1, 1, 1, 1 )
+
+[node name="HTerrainDetailLayer" type="Spatial" parent="HTerrain"]
+script = ExtResource( 15 )
+__meta__ = {
+"_editor_icon": ExtResource( 16 )
+}
+character_path = NodePath("../../player")
+texture = SubResource( 42 )
+density = 8.0
+instance_mesh = ExtResource( 2 )
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = null
+shader_params/u_bottom_ao = 0.729
+shader_params/u_instance_scale = Vector3( 0.8, 1.15, 1 )
+shader_params/character_position = Vector3( 1.20251, 9.88832, -3.67169 )
+shader_params/character_radius = 3.0
+shader_params/character_push_strength = 1.0
+shader_params/character_distance_falloff_curve = SubResource( 58 )
+
+[node name="HTerrainDetailLayer2" type="Spatial" parent="HTerrain"]
+script = ExtResource( 15 )
+__meta__ = {
+"_editor_icon": ExtResource( 16 )
+}
+character_path = NodePath("../../player")
+layer_index = 1
+texture = ExtResource( 3 )
+view_distance = 80.0
+density = 0.02
+instance_mesh = ExtResource( 1 )
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = null
+shader_params/u_bottom_ao = null
+shader_params/u_instance_scale = Vector3( 1, 1, 1 )
+shader_params/character_position = Vector3( 1.20251, 9.88832, -3.67169 )
+shader_params/character_radius = 3.0
+shader_params/character_push_strength = 1.0
+shader_params/character_distance_falloff_curve = SubResource( 60 )
+
+[node name="tree" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2382, 9.875, -2.06281 )
+collision_layer = 2
+
+[node name="tree2" type="MeshInstance" parent="tree"]
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 63 )
+material/1 = SubResource( 64 )
+
+[node name="CollisionShape" type="CollisionShape" parent="tree"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.058, 0 )
+shape = SubResource( 62 )
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24002, 9.54228, -20.0966 )
+amount = 256
+lifetime = 30.0
+preprocess = 68.22
+randomness = 0.07
+visibility_aabb = AABB( -30.1504, -4.93116, -20.095, 60, 24.8623, 60 )
+process_material = SubResource( 75 )
+draw_pass_1 = SubResource( 72 )
+
+[node name="box" type="RigidBody" parent="." groups=["PICKUP"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.10304, 11.5546, 0 )
+collision_layer = 2
+collision_mask = 3
+mass = 3.0
+gravity_scale = 3.0
+continuous_cd = true
+
+[node name="CSGBox" type="CSGBox" parent="box"]
+material = SubResource( 82 )
+
+[node name="col" type="CollisionShape" parent="box"]
+shape = SubResource( 83 )
+
+[node name="grab" type="Spatial" parent="box"]
+
+[editable path="player"]
+[editable path="player/mesh"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://froggie_diffuse.png" type="Texture" id=1]
+[ext_resource path="res://froggie3d.gltf" type="PackedScene" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 1 )
+
+[node name="froggie3d" instance=ExtResource( 2 )]
+
+[node name="Froggie" parent="." index="0"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="Froggie_mesh" parent="Froggie/Skeleton" index="0"]
+material/0 = SubResource( 1 )

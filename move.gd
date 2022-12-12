@@ -1,8 +1,8 @@
 extends KinematicBody
 
 const ROT_SPEED_MULTIPLIER = 0.01 #reduce this to make the rotation radius larger
-const JUMP_VELOCITY = 60
-const RUN_JUMP_VELOCITY = 120
+const JUMP_VELOCITY = 4
+const RUN_JUMP_VELOCITY = 6
 const RUN_SPEED = 20
 const ACCELERATION = 12
 const ANGULAR_ACCELERATION = 8
@@ -10,9 +10,6 @@ const ROLL_MAGNITUDE = 17
 const WALK_SPEED = 15
 
 var direction = Vector3.BACK
-var strafe_dir = Vector3.ZERO
-var strafe = Vector3.ZERO
-var aim_turn = 0
 var vertical_velocity = 0
 var gravity = 5
 
@@ -59,7 +56,8 @@ func _physics_process(delta):
 					obj.set_mode(RigidBody.MODE_CHARACTER)
 					obj.get_node("col").set_disabled(true)
 					get_node("mesh/Froggie/Skeleton/bone_mount/mount").remote_path = obj.get_path()
-					
+			if obj.is_in_group("MOUNT"):
+				pass
 	
 	if Input.is_action_just_released("cam_dist_in"):
 		if $arm.spring_length > 1.5:
@@ -94,24 +92,23 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_forward") ||  Input.is_action_pressed("move_backward") || \
 	Input.is_action_pressed("move_left") ||  Input.is_action_pressed("move_right"):
 		
-		
-		var lerp_ang_y = lerp_angle($mesh.get_rotation().y, $arm.get_rotation().y, delta * ANGULAR_ACCELERATION)
-		$mesh.set_rotation(Vector3( get_rotation().x, lerp_ang_y, $arm.get_rotation().z))
+		#var lerp_ang_y = lerp_angle($mesh.get_rotation().y, $arm.get_rotation().y, delta * ANGULAR_ACCELERATION)
+		#$mesh.set_rotation(Vector3( get_rotation().x, lerp_ang_y, get_rotation().z))
 		
 		
 		direction = -Vector3(Input.get_action_strength("move_left") - Input.get_action_strength("move_right"),
 					0, Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward"))
-
-		#strafe_dir = direction
 		
 		direction = direction.rotated(Vector3.UP, h_rot).normalized()
 
 		movement_speed = _walk_speed
 		
+		$mesh.rotation.y = lerp_angle($mesh.rotation.y, atan2(direction.x, direction.z) - rotation.y + PI, delta * ANGULAR_ACCELERATION)
+		
+
 		if not jumping:
 			$state["parameters/conditions/move"] = true
 			$state["parameters/conditions/idle"] = false
-			#$state["parameters/move/blend_position"] = lerp($state["parameters/move/blend_position"], movement_speed/RUN_SPEED, delta *10)
 		else:
 			$state["parameters/conditions/move"] = false
 			$state["parameters/conditions/idle"] = true
@@ -119,7 +116,6 @@ func _physics_process(delta):
 		$state["parameters/conditions/move"] = false
 		$state["parameters/conditions/idle"] = true
 		movement_speed = 0
-		#strafe_dir = Vector3.ZERO
 
 	velocity = lerp(velocity, direction * movement_speed, delta * ACCELERATION)
 	velocity = move_and_slide(velocity + Vector3.DOWN * vertical_velocity, Vector3.UP)
@@ -130,8 +126,6 @@ func _physics_process(delta):
 		vertical_velocity = 0
 	
 	velocity.y -= vertical_velocity
-	
-	#strafe = lerp(strafe, strafe_dir + Vector3.RIGHT * aim_turn, delta * acceleration)
 	
 	camrot_v = clamp(camrot_v, cam_v_min, cam_v_max)
 	
@@ -160,9 +154,9 @@ func _physics_process(delta):
 			$state.set("parameters/conditions/jump", false)
 		else:
 			if running:
-				velocity.y += 6
+				velocity.y += RUN_JUMP_VELOCITY
 			else:
-				velocity.y += 4
+				velocity.y += JUMP_VELOCITY
 	
 			if velocity.y != 0:
 				$state.set("parameters/conditions/jump", true)

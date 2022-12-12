@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://flower/model.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://WindGrass/grass_triangle.obj" type="ArrayMesh" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://trees/bark06.png" type="Texture" id=21]
 [ext_resource path="res://particles/seed.png" type="Texture" id=22]
 [ext_resource path="res://objects/crate1_diffuse.png" type="Texture" id=23]
+[ext_resource path="res://cat.tscn" type="PackedScene" id=24]
 
 [sub_resource type="GDScript" id=10]
 script/source = "extends Spatial
@@ -189,9 +190,8 @@ normal_texture = ExtResource( 19 )
 transmission_enabled = true
 transmission = Color( 0.74902, 0.819608, 0.572549, 1 )
 
-[sub_resource type="CapsuleShape" id=62]
-radius = 0.992158
-height = 18.0148
+[sub_resource type="CylinderShape" id=111]
+height = 26.2866
 
 [sub_resource type="Curve" id=73]
 _data = [ Vector2( 0, 0.993182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -233,9 +233,6 @@ script = SubResource( 10 )
 
 [node name="player" parent="." instance=ExtResource( 4 )]
 transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 1.20251, 9.88832, -3.67169 )
-
-[node name="Skeleton" parent="player/mesh/Froggie" index="0"]
-bones/1/bound_children = [ NodePath("bone_mount") ]
 
 [node name="bone_mount" parent="player/mesh/Froggie/Skeleton" index="1"]
 transform = Transform( -1.80364e-07, 0.39194, 0.919991, -3.02728e-08, 0.919991, -0.39194, -1, -9.85426e-08, -1.54068e-07, -0.74006, 2.33865, 0.0193155 )
@@ -279,18 +276,15 @@ chunk_size = 32
 collision_enabled = true
 collision_layer = 1
 collision_mask = 1
-shader_type = "Classic4"
+shader_type = "Classic4Lite"
 custom_shader = null
 custom_globalmap_shader = null
 texture_set = SubResource( 25 )
 render_layers = 1
-shader_params/u_ground_uv_scale_per_texture = Plane( 20, 20, 20, 20 )
+shader_params/u_ground_uv_scale = 20
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 0.1, 0, 0, 0 )
-shader_params/u_globalmap_blend_start = null
-shader_params/u_globalmap_blend_distance = null
-shader_params/u_colormap_opacity_per_texture = Plane( 1, 1, 1, 1 )
 
 [node name="HTerrainDetailLayer" type="Spatial" parent="HTerrain"]
 script = ExtResource( 15 )
@@ -299,6 +293,7 @@ __meta__ = {
 }
 character_path = NodePath("../../player")
 texture = SubResource( 42 )
+view_distance = 80.0
 density = 8.0
 instance_mesh = ExtResource( 2 )
 shader_params/u_globalmap_tint_bottom = null
@@ -307,7 +302,7 @@ shader_params/u_bottom_ao = 0.729
 shader_params/u_instance_scale = Vector3( 0.8, 1.15, 1 )
 shader_params/character_position = Vector3( 1.20251, 9.88832, -3.67169 )
 shader_params/character_radius = 3.0
-shader_params/character_push_strength = 1.0
+shader_params/character_push_strength = 2.0
 shader_params/character_distance_falloff_curve = SubResource( 58 )
 
 [node name="HTerrainDetailLayer2" type="Spatial" parent="HTerrain"]
@@ -327,11 +322,11 @@ shader_params/u_bottom_ao = null
 shader_params/u_instance_scale = Vector3( 1, 1, 1 )
 shader_params/character_position = Vector3( 1.20251, 9.88832, -3.67169 )
 shader_params/character_radius = 3.0
-shader_params/character_push_strength = 1.0
+shader_params/character_push_strength = 2.0
 shader_params/character_distance_falloff_curve = SubResource( 60 )
 
 [node name="tree" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2382, 9.875, -2.06281 )
+transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -16.2382, 9.875, -2.06281 )
 collision_layer = 2
 
 [node name="tree2" type="MeshInstance" parent="tree"]
@@ -341,16 +336,16 @@ material/0 = SubResource( 63 )
 material/1 = SubResource( 64 )
 
 [node name="CollisionShape" type="CollisionShape" parent="tree"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.058, 0 )
-shape = SubResource( 62 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.9351, 0 )
+shape = SubResource( 111 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24002, 9.54228, -20.0966 )
 amount = 256
-lifetime = 30.0
+lifetime = 5.0
 preprocess = 68.22
 randomness = 0.07
-visibility_aabb = AABB( -30.1504, -4.93116, -20.095, 60, 24.8623, 60 )
+visibility_aabb = AABB( -15.2189, -62.0441, -61.0545, 102.834, 127.51, 122.856 )
 process_material = SubResource( 75 )
 draw_pass_1 = SubResource( 72 )
 
@@ -369,6 +364,10 @@ material = SubResource( 82 )
 shape = SubResource( 83 )
 
 [node name="grab" type="Spatial" parent="box"]
+
+[node name="siamese_cat_lowpoly" parent="." instance=ExtResource( 24 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.361663, 9.875, -15.6826 )
+collision_layer = 2
 
 [editable path="player"]
 [editable path="player/mesh"]

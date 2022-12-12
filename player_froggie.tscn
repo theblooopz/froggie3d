@@ -51,7 +51,7 @@ nodes/Animation/node = SubResource( 116 )
 nodes/Animation/position = Vector2( -40, 140 )
 nodes/TimeScale/node = SubResource( 117 )
 nodes/TimeScale/position = Vector2( 140, 140 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeAnimation" id=109]
 animation = "Run"
@@ -65,7 +65,7 @@ nodes/Animation/position = Vector2( -80, 120 )
 nodes/TimeScale/node = SubResource( 110 )
 nodes/TimeScale/position = Vector2( 120, 120 )
 nodes/output/position = Vector2( 300, 160 )
-node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=119]
 switch_mode = 2
@@ -164,9 +164,6 @@ transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
 
 [node name="Froggie" parent="mesh" index="0"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
-
-[node name="Skeleton" parent="mesh/Froggie" index="0"]
-bones/1/bound_children = [ NodePath("bone_mount") ]
 
 [node name="Froggie_mesh" parent="mesh/Froggie/Skeleton" index="0"]
 material/0 = SubResource( 121 )

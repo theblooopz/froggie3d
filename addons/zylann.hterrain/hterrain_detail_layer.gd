@@ -429,10 +429,11 @@ func process(delta: float, viewer_pos: Vector3):
 	var awp = _get_ambient_wind_params()
 	_material.set_shader_param("u_ambient_wind", awp)
 	
-	var spos = get_node(character_path).global_transform.origin
-	_material.set_shader_param(
-		"character_position", spos
-	)
+	if character_path:
+		var spos = get_node(character_path).global_transform.origin
+		_material.set_shader_param(
+			"character_position", spos
+		)
 
 
 # Gets local-space AABB of a detail chunk.

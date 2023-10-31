@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Chicken.obj-81c3e601f3e5585cbd2caf1a50d85dbe.mesh"
+
+[deps]
+
+files=[ "res://.import/Chicken.obj-81c3e601f3e5585cbd2caf1a50d85dbe.mesh" ]
+
+source_file="res://ultimate_monsters/Blob/OBJ/Chicken.obj"
+dest_files=[ "res://.import/Chicken.obj-81c3e601f3e5585cbd2caf1a50d85dbe.mesh", "res://.import/Chicken.obj-81c3e601f3e5585cbd2caf1a50d85dbe.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

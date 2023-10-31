@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/HedgeLongRound.obj-7265c67e5c6fb599fe519a750e1aa660.mesh"
+
+[deps]
+
+files=[ "res://.import/HedgeLongRound.obj-7265c67e5c6fb599fe519a750e1aa660.mesh" ]
+
+source_file="res://Hedges/LongRound/HedgeLongRound.obj"
+dest_files=[ "res://.import/HedgeLongRound.obj-7265c67e5c6fb599fe519a750e1aa660.mesh", "res://.import/HedgeLongRound.obj-7265c67e5c6fb599fe519a750e1aa660.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 0.15, 0.15, 0.15 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

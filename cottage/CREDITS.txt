@@ -1,0 +1,15 @@
+The inspiration for this model is a Cottage figurine
+by Tabletop World:
+
+  https://www.tabletop-world.com/?product=cottage
+
+The following sources were used for the textures:
+
+  https://opengameart.org/content/modular-medieval-building-pack
+  Modular Medieval Building Pack by Daniel Andersson (CC0)
+
+  https://opengameart.org/content/stronghold
+  Stronghold by Lotnik (CC-BY 3.0)
+
+  https://commons.wikimedia.org/wiki/File:St_Peter%27s_church_-_the_priest_door_-_geograph.org.uk_-_1405746.jpg
+  Evelyn Simak / St Peter's church - the priest door (CC BY-SA 2.0)

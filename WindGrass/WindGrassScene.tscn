@@ -1,8 +1,9 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://flower/model.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://WindGrass/grass_triangle.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://flower/texture.png" type="Texture" id=3]
+[ext_resource path="res://player_froggie.tscn" type="PackedScene" id=4]
 [ext_resource path="res://default_env.tres" type="Environment" id=5]
 [ext_resource path="res://addons/cloud/Cloud.gd" type="Script" id=6]
 [ext_resource path="res://addons/cloud/CageMesh.tres" type="ArrayMesh" id=7]
@@ -15,14 +16,21 @@
 [ext_resource path="res://ground/Ground037_2K_NormalGL.jpg" type="Texture" id=14]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" type="Script" id=15]
 [ext_resource path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" type="Texture" id=16]
-[ext_resource path="res://trees/tree1.obj" type="ArrayMesh" id=17]
-[ext_resource path="res://trees/bark06_n.png" type="Texture" id=18]
-[ext_resource path="res://trees/juniper leaf_n.png" type="Texture" id=19]
-[ext_resource path="res://trees/juniper leaf.png" type="Texture" id=20]
-[ext_resource path="res://trees/bark06.png" type="Texture" id=21]
+[ext_resource path="res://stylized_nature/BirchTree_2.tscn" type="PackedScene" id=17]
+[ext_resource path="res://stylized_nature/MapleTree_1.tscn" type="PackedScene" id=18]
+[ext_resource path="res://stylized_nature/BirchTree_1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Frog.tscn" type="PackedScene" id=20]
 [ext_resource path="res://particles/seed.png" type="Texture" id=22]
 [ext_resource path="res://objects/crate1_diffuse.png" type="Texture" id=23]
-[ext_resource path="res://cat.tscn" type="PackedScene" id=24]
+[ext_resource path="res://spaceship.gltf" type="PackedScene" id=24]
+[ext_resource path="res://ground/Ground051_1K-JPG/Ground051_1K_Color.jpg" type="Texture" id=25]
+[ext_resource path="res://ground/Ground051_1K-JPG/Ground051_1K_NormalGL.jpg" type="Texture" id=26]
+[ext_resource path="res://cottage.tscn" type="PackedScene" id=27]
+[ext_resource path="res://WindGrass/LongHedge.material" type="Material" id=28]
+[ext_resource path="res://fence/fence.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Hedges/LongRound/HedgeLongRound.obj" type="ArrayMesh" id=30]
+[ext_resource path="res://fence/post.tscn" type="PackedScene" id=31]
+[ext_resource path="res://rocks/01/rock1.tscn" type="PackedScene" id=32]
 
 [sub_resource type="GDScript" id=10]
 script/source = "extends Spatial
@@ -37,13 +45,13 @@ func _input(event):
 		get_tree().quit()
 	
 	if event.is_action_pressed(\"restart\"):
-		get_tree().reload_current_scene()
+		var _r = get_tree().reload_current_scene()
 	
 	if event.is_action_pressed(\"fullscreen\"):
 		OS.set_window_fullscreen(not OS.is_window_fullscreen())
 "
 
-[sub_resource type="ShaderMaterial" id=112]
+[sub_resource type="ShaderMaterial" id=121]
 render_priority = -123
 shader = ExtResource( 8 )
 shader_param/seed = -10000.0
@@ -57,9 +65,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=113]
+[sub_resource type="ShaderMaterial" id=122]
 render_priority = -124
-next_pass = SubResource( 112 )
+next_pass = SubResource( 121 )
 shader = ExtResource( 8 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 10, 0 )
@@ -72,9 +80,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=114]
+[sub_resource type="ShaderMaterial" id=123]
 render_priority = -125
-next_pass = SubResource( 113 )
+next_pass = SubResource( 122 )
 shader = ExtResource( 8 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 10, 0 )
@@ -87,9 +95,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=115]
+[sub_resource type="ShaderMaterial" id=124]
 render_priority = -126
-next_pass = SubResource( 114 )
+next_pass = SubResource( 123 )
 shader = ExtResource( 8 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 10, 0 )
@@ -102,9 +110,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=116]
+[sub_resource type="ShaderMaterial" id=125]
 render_priority = -127
-next_pass = SubResource( 115 )
+next_pass = SubResource( 124 )
 shader = ExtResource( 8 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 10, 0 )
@@ -117,9 +125,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=117]
+[sub_resource type="ShaderMaterial" id=126]
 render_priority = -128
-next_pass = SubResource( 116 )
+next_pass = SubResource( 125 )
 shader = ExtResource( 8 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 10, 0 )
@@ -146,7 +154,7 @@ size = Vector2( 300, 300 )
 [sub_resource type="Resource" id=25]
 script = ExtResource( 12 )
 mode = 0
-textures = [ [ ExtResource( 13 ) ], [ ExtResource( 14 ) ] ]
+textures = [ [ ExtResource( 13 ), ExtResource( 25 ) ], [ ExtResource( 14 ), ExtResource( 26 ) ] ]
 
 [sub_resource type="Gradient" id=41]
 offsets = PoolRealArray( 1 )
@@ -164,27 +172,6 @@ curve = SubResource( 57 )
 
 [sub_resource type="CurveTexture" id=60]
 curve = SubResource( 57 )
-
-[sub_resource type="SpatialMaterial" id=63]
-albedo_texture = ExtResource( 21 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 18 )
-
-[sub_resource type="SpatialMaterial" id=64]
-params_cull_mode = 2
-params_use_alpha_scissor = true
-params_alpha_scissor_threshold = 0.2
-albedo_color = Color( 0.721569, 0.847059, 0.247059, 1 )
-albedo_texture = ExtResource( 20 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 19 )
-transmission_enabled = true
-transmission = Color( 0.74902, 0.819608, 0.572549, 1 )
-
-[sub_resource type="CylinderShape" id=111]
-height = 26.2866
 
 [sub_resource type="Curve" id=73]
 _data = [ Vector2( 0, 0.993182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -221,24 +208,64 @@ albedo_texture = ExtResource( 23 )
 
 [sub_resource type="BoxShape" id=83]
 
+[sub_resource type="Curve3D" id=118]
+bake_interval = 100.0
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -13.8505, 53.3274, 217.412, 0, 0, 0, 0, 0, 0, -170.761, 49.1884, 152.423, 0, 0, 0, 0, 0, 0, -198.019, 45.929, 79.8763, 0, 0, 0, 0, 0, 0, -206.264, 42.8007, -37.4002, 0, 0, 0, 0, 0, 0, -158.929, 42.8999, -141.24, 0, 0, 0, 0, 0, 0, 7.31668, 42.9789, -218.107, 0, 0, 0, 0, 0, 0, 166.954, 43.1649, -165.311, 0, 0, 0, 0, 0, 0, 221.412, 43.4676, 9.08712, 0, 0, 0, 0, 0, 0, 131.675, 49.8411, 171.731, 0, 0, 0, 0, 0, 0, -13.8505, 53.3274, 217.412 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Animation" id=119]
+resource_name = "New Anim"
+length = 30.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PathFollow:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 30 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1305.66 ]
+}
+
+[sub_resource type="Animation" id=120]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PathFollow:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1207.66 ]
+}
+
 [node name="WindGrass" type="Spatial"]
 script = SubResource( 10 )
 
-[node name="player" parent="." instance_placeholder="res://player_froggie.tscn"]
-transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 1.20251, 9.88832, -3.67169 )
+[node name="player" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -4.27368, 9.88832, 7.79983 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.234243, -0.861674, -0.450164, -0.648519, -0.206467, 0.732662, -0.72426, 0.463561, -0.510449, 279.253, 17.6482, 255.496 )
 layers = 0
 light_energy = 2.277
 shadow_enabled = true
+directional_shadow_blend_splits = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 5 )
 
 [node name="CloudDome2" type="MeshInstance" parent="."]
-transform = Transform( 5000.02, 0, 0, 0, 5000.02, 0, 0, 0, 5000.02, 0, 14.6439, -20.7132 )
-material_override = SubResource( 117 )
+transform = Transform( 5000.02, 0, 0, 0, 5000.02, 0, 0, 0, 5000.02, -4.27368, 13.4825, 7.79983 )
+material_override = SubResource( 126 )
 mesh = ExtResource( 7 )
 skeleton = NodePath("")
 script = ExtResource( 6 )
@@ -272,11 +299,12 @@ shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 0.1, 0, 0, 0 )
 
 [node name="HTerrainDetailLayer" type="Spatial" parent="HTerrain"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99759, -6.36917, 9.60471 )
 script = ExtResource( 15 )
 __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
-character_path = NodePath("")
+character_path = NodePath("../../player")
 texture = SubResource( 42 )
 view_distance = 80.0
 density = 8.0
@@ -285,9 +313,9 @@ shader_params/u_globalmap_tint_bottom = null
 shader_params/u_globalmap_tint_top = null
 shader_params/u_bottom_ao = 0.729
 shader_params/u_instance_scale = Vector3( 0.8, 1.15, 1 )
-shader_params/character_position = Vector3( 1.20251, 9.88832, -3.67169 )
-shader_params/character_radius = 3.0
-shader_params/character_push_strength = 2.0
+shader_params/character_position = Vector3( -4.27368, 9.88832, 7.79983 )
+shader_params/character_radius = 4.0
+shader_params/character_push_strength = 1.0
 shader_params/character_distance_falloff_curve = SubResource( 58 )
 
 [node name="HTerrainDetailLayer2" type="Spatial" parent="HTerrain"]
@@ -295,40 +323,27 @@ script = ExtResource( 15 )
 __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
-character_path = NodePath("")
+character_path = NodePath("../../player")
 layer_index = 1
 texture = ExtResource( 3 )
 view_distance = 80.0
-density = 0.02
+density = 0.23
 instance_mesh = ExtResource( 1 )
 shader_params/u_globalmap_tint_bottom = null
 shader_params/u_globalmap_tint_top = null
 shader_params/u_bottom_ao = null
 shader_params/u_instance_scale = Vector3( 1, 1, 1 )
-shader_params/character_position = Vector3( 1.20251, 9.88832, -3.67169 )
-shader_params/character_radius = 3.0
-shader_params/character_push_strength = 2.0
+shader_params/character_position = Vector3( -4.27368, 9.88832, 7.79983 )
+shader_params/character_radius = 4.0
+shader_params/character_push_strength = 1.0
 shader_params/character_distance_falloff_curve = SubResource( 60 )
-
-[node name="tree" type="StaticBody" parent="."]
-transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -16.2382, 9.875, -2.06281 )
-collision_layer = 2
-
-[node name="tree2" type="MeshInstance" parent="tree"]
-mesh = ExtResource( 17 )
-skeleton = NodePath("../..")
-material/0 = SubResource( 63 )
-material/1 = SubResource( 64 )
-
-[node name="CollisionShape" type="CollisionShape" parent="tree"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.9351, 0 )
-shape = SubResource( 111 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24002, 9.54228, -20.0966 )
 amount = 256
 lifetime = 5.0
-preprocess = 68.22
+preprocess = 50.0
+speed_scale = 0.15
 randomness = 0.07
 visibility_aabb = AABB( -15.2189, -62.0441, -61.0545, 102.834, 127.51, 122.856 )
 process_material = SubResource( 75 )
@@ -350,5 +365,75 @@ shape = SubResource( 83 )
 
 [node name="grab" type="Spatial" parent="box"]
 
-[node name="siamese_cat_lowpoly" parent="." instance=ExtResource( 24 )]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 14.6439, -20.7132 )
+[node name="cottage2" parent="." instance=ExtResource( 27 )]
+transform = Transform( -2.49624, 0, 1.66397, 0, 3, 0, -1.66397, 0, -2.49624, 13.6485, 9.84705, -19.4257 )
+
+[node name="HedgeLongRound" type="MeshInstance" parent="."]
+transform = Transform( 0.741789, 0, 0.670634, 0, 1, 0, -0.670634, 0, 0.741789, -0.0170832, 9.875, -14.9957 )
+mesh = ExtResource( 30 )
+material/0 = ExtResource( 28 )
+
+[node name="HedgeLongRound5" type="MeshInstance" parent="."]
+transform = Transform( 0.741789, 0, 0.670634, 0, 1, 0, -0.670634, 0, 0.741789, -15.9471, 9.875, -14.7831 )
+mesh = ExtResource( 30 )
+material/0 = ExtResource( 28 )
+
+[node name="HedgeLongRound7" type="MeshInstance" parent="."]
+transform = Transform( 0.741789, 0, 0.670634, 0, 1, 0, -0.670634, 0, 0.741789, 26.5475, 9.875, 3.82886 )
+mesh = ExtResource( 30 )
+material/0 = ExtResource( 28 )
+
+[node name="HedgeLongRound2" type="MeshInstance" parent="."]
+transform = Transform( 0.929667, 0, -0.3684, 0, 1, 0, 0.3684, 0, 0.929667, 11.9112, 9.875, -7.40668 )
+mesh = ExtResource( 30 )
+material/0 = ExtResource( 28 )
+
+[node name="Path" type="Path" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.71771, 98.0665, 6.17844 )
+curve = SubResource( 118 )
+
+[node name="PathFollow" type="PathFollow" parent="Path"]
+transform = Transform( 0.286112, 0.0166972, -0.958001, 0.0169385, 0.999604, 0.0224789, 0.958036, -0.0226599, 0.285704, 85.9957, 50.9847, 187.639 )
+offset = 1207.66
+rotation_mode = 4
+
+[node name="spaceship" parent="Path/PathFollow" instance=ExtResource( 24 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 69.3239, -56.8684, 26.1713 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 119 )
+anims/RESET = SubResource( 120 )
+
+[node name="post" parent="." instance=ExtResource( 31 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -7.90756, 15.7114, -19.3436 )
+
+[node name="fence2" parent="." instance=ExtResource( 29 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -7.60241, 9.53436, -19.3734 )
+
+[node name="fence3" parent="." instance=ExtResource( 29 )]
+transform = Transform( 2.2281, 0, 2.00887, 0, 3, 0, -2.00887, 0, 2.2281, -24.4212, 9.53437, -12.9353 )
+
+[node name="post2" parent="." instance=ExtResource( 31 )]
+transform = Transform( 0.157635, 0, -2.99586, 0, 3, 0, 2.99586, 0, 0.157635, 29.2891, 15.7114, 12.4811 )
+
+[node name="fence4" parent="." instance=ExtResource( 29 )]
+transform = Transform( 0.157635, 0, -2.99586, 0, 3, 0, 2.99586, 0, 0.157635, 29.3349, 10.3596, 12.7843 )
+
+[node name="fence5" parent="." instance=ExtResource( 29 )]
+transform = Transform( 2.12317, 0, -2.11947, 0, 3, 0, 2.11947, 0, 2.12317, 22.0219, 9.72879, -3.67303 )
+
+[node name="rock1" parent="." instance=ExtResource( 32 )]
+transform = Transform( 0.867279, 0, -0.497822, 0, 1, 0, 0.497822, 0, 0.867279, -13.913, 8.45354, -11.3808 )
+
+[node name="BirchTree_2" parent="." instance=ExtResource( 17 )]
+transform = Transform( 0.877649, 0, 0.479305, 0, 1, 0, -0.479305, 0, 0.877649, 14.9947, 9.31854, 17.7116 )
+
+[node name="BirchTree_1" parent="." instance=ExtResource( 19 )]
+transform = Transform( 1.01978, 0, 1.10003, 0, 1.5, 0, -1.10003, 0, 1.01978, -17.745, 9.875, 4.76557 )
+
+[node name="MapleTree_1" parent="." instance=ExtResource( 18 )]
+transform = Transform( 0.983121, 0, -0.182956, 0, 1, 0, 0.182956, 0, 0.983121, -17.9882, 8.83922, 23.6619 )
+
+[node name="FrogEnemy" parent="." instance=ExtResource( 20 )]
+transform = Transform( 0.819352, 0, -0.57329, 0, 1, 0, 0.57329, 0, 0.819352, 4.03787, 9.875, -4.0264 )

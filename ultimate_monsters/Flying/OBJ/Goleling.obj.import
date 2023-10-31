@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Goleling.obj-343fde9e190f1b4f9587a34eade54dbc.mesh"
+
+[deps]
+
+files=[ "res://.import/Goleling.obj-343fde9e190f1b4f9587a34eade54dbc.mesh" ]
+
+source_file="res://ultimate_monsters/Flying/OBJ/Goleling.obj"
+dest_files=[ "res://.import/Goleling.obj-343fde9e190f1b4f9587a34eade54dbc.mesh", "res://.import/Goleling.obj-343fde9e190f1b4f9587a34eade54dbc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

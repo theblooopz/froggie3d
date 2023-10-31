@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Fish.obj-c3149650b4b37924def25eca444afa3f.mesh"
+
+[deps]
+
+files=[ "res://.import/Fish.obj-c3149650b4b37924def25eca444afa3f.mesh" ]
+
+source_file="res://ultimate_monsters/Blob/OBJ/Fish.obj"
+dest_files=[ "res://.import/Fish.obj-c3149650b4b37924def25eca444afa3f.mesh", "res://.import/Fish.obj-c3149650b4b37924def25eca444afa3f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

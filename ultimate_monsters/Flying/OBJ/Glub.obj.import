@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Glub.obj-283f08742df946918c224de203b0c3fe.mesh"
+
+[deps]
+
+files=[ "res://.import/Glub.obj-283f08742df946918c224de203b0c3fe.mesh" ]
+
+source_file="res://ultimate_monsters/Flying/OBJ/Glub.obj"
+dest_files=[ "res://.import/Glub.obj-283f08742df946918c224de203b0c3fe.mesh", "res://.import/Glub.obj-283f08742df946918c224de203b0c3fe.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

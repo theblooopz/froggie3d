@@ -30,8 +30,10 @@ var _walk_speed = WALK_SPEED
 
 var jumping = false
 var running = false
+var rolling = false
 
 var _spring_length = 0
+var _arm_height = 2.8
 
 
 func _ready():
@@ -68,11 +70,15 @@ func _physics_process(delta):
 		
 	if $arm.spring_length != _spring_length:
 		$arm.spring_length = lerp($arm.spring_length, _spring_length, 0.25)
+		#$arm.transform.origin.y = lerp($arm.transform.origin.y, _spring_length/2, 0.25)
+		
 	
 	$state["parameters/conditions/wave"] = Input.is_action_pressed("move_wave")
+	
+	$state["parameters/conditions/roll"] = Input.is_action_pressed("move_roll")
 		
 	if Input.is_action_pressed("move_jump"):
-		if is_on_floor():
+		if is_on_floor() or $mesh/jump_ray.is_colliding():
 			jumping = true
 
 	var h_rot = $arm.global_transform.basis.get_euler().y
@@ -87,7 +93,7 @@ func _physics_process(delta):
 		running = false
 		$state["parameters/Move/BlendTree/TimeScale/scale"] = 1
 		$state["parameters/Move/BlendTree 2/TimeScale/scale"] = 1
-		
+	
 	
 	if Input.is_action_pressed("move_forward") ||  Input.is_action_pressed("move_backward") || \
 	Input.is_action_pressed("move_left") ||  Input.is_action_pressed("move_right"):

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wizard.obj-751f8a1f4deaabdf696e8df2cdc247bf.mesh"
+
+[deps]
+
+files=[ "res://.import/Wizard.obj-751f8a1f4deaabdf696e8df2cdc247bf.mesh" ]
+
+source_file="res://ultimate_monsters/Blob/OBJ/Wizard.obj"
+dest_files=[ "res://.import/Wizard.obj-751f8a1f4deaabdf696e8df2cdc247bf.mesh", "res://.import/Wizard.obj-751f8a1f4deaabdf696e8df2cdc247bf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

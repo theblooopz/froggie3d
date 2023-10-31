@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Dino.obj-6cce16cbae7afba91c6f034d1a5a70df.mesh"
+
+[deps]
+
+files=[ "res://.import/Dino.obj-6cce16cbae7afba91c6f034d1a5a70df.mesh" ]
+
+source_file="res://ultimate_monsters/Big/OBJ/Dino.obj"
+dest_files=[ "res://.import/Dino.obj-6cce16cbae7afba91c6f034d1a5a70df.mesh", "res://.import/Dino.obj-6cce16cbae7afba91c6f034d1a5a70df.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

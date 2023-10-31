@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Bunny.obj-43840a1d49849239e01a704f21434949.mesh"
+
+[deps]
+
+files=[ "res://.import/Bunny.obj-43840a1d49849239e01a704f21434949.mesh" ]
+
+source_file="res://ultimate_monsters/Big/OBJ/Bunny.obj"
+dest_files=[ "res://.import/Bunny.obj-43840a1d49849239e01a704f21434949.mesh", "res://.import/Bunny.obj-43840a1d49849239e01a704f21434949.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

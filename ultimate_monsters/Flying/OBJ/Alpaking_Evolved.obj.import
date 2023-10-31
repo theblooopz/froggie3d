@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Alpaking_Evolved.obj-25c8faae5ae1ec20ec573d0d62742720.mesh"
+
+[deps]
+
+files=[ "res://.import/Alpaking_Evolved.obj-25c8faae5ae1ec20ec573d0d62742720.mesh" ]
+
+source_file="res://ultimate_monsters/Flying/OBJ/Alpaking_Evolved.obj"
+dest_files=[ "res://.import/Alpaking_Evolved.obj-25c8faae5ae1ec20ec573d0d62742720.mesh", "res://.import/Alpaking_Evolved.obj-25c8faae5ae1ec20ec573d0d62742720.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/MushroomKing.obj-af8e518f11f2ed9fa8d2a0bf0c78615f.mesh"
+
+[deps]
+
+files=[ "res://.import/MushroomKing.obj-af8e518f11f2ed9fa8d2a0bf0c78615f.mesh" ]
+
+source_file="res://ultimate_monsters/Big/OBJ/MushroomKing.obj"
+dest_files=[ "res://.import/MushroomKing.obj-af8e518f11f2ed9fa8d2a0bf0c78615f.mesh", "res://.import/MushroomKing.obj-af8e518f11f2ed9fa8d2a0bf0c78615f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Alien.obj-92075016a16196b567183ba64087db9a.mesh"
+
+[deps]
+
+files=[ "res://.import/Alien.obj-92075016a16196b567183ba64087db9a.mesh" ]
+
+source_file="res://ultimate_monsters/Blob/OBJ/Alien.obj"
+dest_files=[ "res://.import/Alien.obj-92075016a16196b567183ba64087db9a.mesh", "res://.import/Alien.obj-92075016a16196b567183ba64087db9a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

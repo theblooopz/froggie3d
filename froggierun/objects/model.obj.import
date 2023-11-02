@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/model.obj-cd1e03669b3db390e245a7b00dcc694a.mesh"
+
+[deps]
+
+files=[ "res://.import/model.obj-cd1e03669b3db390e245a7b00dcc694a.mesh" ]
+
+source_file="res://froggierun/objects/model.obj"
+dest_files=[ "res://.import/model.obj-cd1e03669b3db390e245a7b00dcc694a.mesh", "res://.import/model.obj-cd1e03669b3db390e245a7b00dcc694a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 0.1, 0.1, 0.1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

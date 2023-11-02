@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://RockForm01.tscn" type="PackedScene" id=1]
+[ext_resource path="res://RockForm02.tscn" type="PackedScene" id=2]
+
+[node name="DemoScene" type="Spatial" index="0"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+
+environment = null
+
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="1"]
+
+transform = Transform( 1, 0, 0, 0, 0.899729, 0.436449, 0, -0.436449, 0.899729, -0.0874691, 0.19005, 0 )
+layers = 1
+light_color = Color( 1, 1, 1, 1 )
+light_energy = 1.0
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 0.1
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.1
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = false
+directional_shadow_normal_bias = 0.8
+directional_shadow_bias_split_scale = 0.25
+directional_shadow_depth_range = 0
+directional_shadow_max_distance = 200.0
+
+[node name="RockForm01" parent="." index="2" instance=ExtResource( 1 )]
+
+transform = Transform( 1, 0, 0, 0, 0.66739, 0.744708, 0, -0.744708, 0.66739, -2.47024, -0.262873, 1.4601 )
+
+[node name="RockForm03" parent="." index="3" instance=ExtResource( 1 )]
+
+transform = Transform( -0.926008, -0.0510452, 0.374037, -0.121718, 0.978272, -0.167833, -0.357343, -0.200942, -0.912101, -6.54155, -1.09578, -0.17295 )
+
+[node name="RockForm02" parent="." index="4" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 0.954564, 0.298007, 0, -0.298007, 0.954564, -4.29569, 0.0166817, 0.301978 )
+
+[node name="RockForm04" parent="." index="5" instance=ExtResource( 2 )]
+
+transform = Transform( -1.03924, -0.0446794, -0.380257, -0.127687, -0.720099, 0.48488, -0.297525, 0.468994, 0.870698, -9.39285, -1.12357, 0.33974 )
+
+

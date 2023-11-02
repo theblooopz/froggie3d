@@ -35,7 +35,6 @@ var rolling = false
 var _spring_length = 0
 var _arm_height = 2.8
 
-
 func _ready():
 	direction = Vector3.BACK.rotated(Vector3.UP, $arm.global_transform.basis.get_euler().z)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -60,7 +59,7 @@ func _physics_process(delta):
 					get_node("mesh/Froggie/Skeleton/bone_mount/mount").remote_path = obj.get_path()
 			if obj.is_in_group("MOUNT"):
 				pass
-	
+
 	if Input.is_action_just_released("cam_dist_in"):
 		if $arm.spring_length > 1.5:
 			_spring_length -= 0.25

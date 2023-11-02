@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/HP_RockForm_02.obj-b64ab86f8b3e17bf36f8703ae8a02808.mesh"
+
+[deps]
+
+files=[ "res://.import/HP_RockForm_02.obj-b64ab86f8b3e17bf36f8703ae8a02808.mesh" ]
+
+source_file="res://froggierun/rocks/models/HP_RockForm_02.obj"
+dest_files=[ "res://.import/HP_RockForm_02.obj-b64ab86f8b3e17bf36f8703ae8a02808.mesh", "res://.import/HP_RockForm_02.obj-b64ab86f8b3e17bf36f8703ae8a02808.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

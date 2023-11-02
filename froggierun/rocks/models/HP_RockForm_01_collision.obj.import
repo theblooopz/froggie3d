@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/HP_RockForm_01_collision.obj-ea4bed965fa7f06ec232417c146af76c.mesh"
+
+[deps]
+
+files=[ "res://.import/HP_RockForm_01_collision.obj-ea4bed965fa7f06ec232417c146af76c.mesh" ]
+
+source_file="res://froggierun/rocks/models/HP_RockForm_01_collision.obj"
+dest_files=[ "res://.import/HP_RockForm_01_collision.obj-ea4bed965fa7f06ec232417c146af76c.mesh", "res://.import/HP_RockForm_01_collision.obj-ea4bed965fa7f06ec232417c146af76c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
